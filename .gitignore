@@ -1,0 +1,13 @@
+# Archivos de base de datos
+*.sql~
+*.ibd
+*.frm
+*.log
+
+# Configs sensibles
+.env
+
+# Carpetas temporales
+.vscode/
+.idea/
+*.tmp
