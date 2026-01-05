@@ -1,5 +1,5 @@
 -- =========================================
--- Proyecto SQL - Base de Datos Fitness
+-- Proyecto SQL - Base de Datos Fitness 01 SCHEMA
 -- =========================================
 
 -- Eliminamos la base de datos si existe (para poder ejecutar desde cero)
@@ -14,7 +14,7 @@ CREATE DATABASE fitness_db
 USE fitness_db;
 
 -- =========================================
--- DIMENSION: USUARIO
+-- DIM: USUARIO
 -- Describe las características del usuario
 -- =========================================
 
@@ -31,10 +31,10 @@ CREATE TABLE IF NOT EXISTS usuario (
     
     tiene_gimnasio BOOLEAN NOT NULL DEFAULT 0
 
-) COMMENT='Dimensión usuario: información demográfica y nivel de entrenamiento. La validación de rangos (edad) se controla a nivel lógico.';
+) COMMENT='Información demográfica y nivel de entrenamiento. El uso de ENUMs garantiza coherencia en valores categóricos como nivel y objetivo.';
 
 -- =========================================
--- DIMENSION: RUTINA
+-- DIM: RUTINA
 -- Describe las rutinas de entrenamiento
 -- =========================================
 
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS rutina (
 ) COMMENT='Dimensión rutina: define el tipo de entrenamiento según nivel y objetivo';
 
 -- =========================================
--- DIMENSION: EJERCICIO
+-- DIM: EJERCICIO
 -- Catálogo de ejercicios de entrenamiento
 -- =========================================
 
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS ejercicio (
 ) COMMENT='Dimensión ejercicio: catálogo de ejercicios y sus características';
 
 -- =========================================
--- DIMENSION: CALENDARIO
+-- DIM: CALENDARIO
 -- Dimensión temporal para análisis por fechas
 -- =========================================
 
@@ -123,7 +123,7 @@ CREATE TABLE IF NOT EXISTS rutina_ejercicio (
 ) COMMENT='Tabla intermedia que define los ejercicios que componen cada rutina';
 
 -- =========================================
--- TABLA DE HECHOS: SESION_ENTRENAMIENTO
+-- TABLA FACT: SESION_ENTRENAMIENTO
 -- Registra cada sesión realizada por un usuario
 -- =========================================
 
@@ -161,5 +161,10 @@ CREATE TABLE IF NOT EXISTS sesion_entrenamiento (
         ON DELETE RESTRICT
         ON UPDATE CASCADE
 
-) COMMENT='Tabla de hechos: sesiones de entrenamiento realizadas por los usuarios';
+) COMMENT='Cada fila representa una sesión de entrenamiento realizada por un usuario en una fecha concreta. Contiene métricas agregables para análisis (duración, esfuerzo, calorías).';
+
+-- Índice para optimizar consultas frecuentes por usuario en la tabla de hechos
+-- Este índice mejora el rendimiento de las consultas analíticas que agrupan o filtran sesiones por usuario
+CREATE INDEX idx_sesion_usuario
+ON sesion_entrenamiento(id_usuario);
 
