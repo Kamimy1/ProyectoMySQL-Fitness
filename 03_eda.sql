@@ -61,8 +61,8 @@ INNER JOIN usuario u
   ON s.id_usuario = u.id_usuario;
 /*
 Insight:
-Los valores mínimos y máximos de duración y esfuerzo se encuentran dentro de rangos razonables, lo que indica coherencia en los datos y ausencia
-de valores atípicos extremos que puedan distorsionar el análisis.
+Al cruzar las sesiones con el perfil del usuario se puede analizar la duración y el esfuerzo de los entrenamientos en función del nivel y objetivo personal,
+permitiendo evaluar si la intensidad propuesta es coherente con cada perfil.
 */
 
 -- INNER JOIN Sesiones por tipo de rutina
