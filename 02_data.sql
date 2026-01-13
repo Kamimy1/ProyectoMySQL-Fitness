@@ -8,7 +8,7 @@ USE fitness_db;
 Este bloque permite reiniciar la base de datos para pruebas y recargas de datos.
 Se utiliza DELETE en lugar de TRUNCATE para respetar las claves foráneas.
 */
-/*
+
 DELETE FROM sesion_entrenamiento;
 DELETE FROM rutina_ejercicio;
 DELETE FROM ejercicio;
@@ -23,7 +23,7 @@ ALTER TABLE ejercicio AUTO_INCREMENT = 1;
 ALTER TABLE rutina AUTO_INCREMENT = 1;
 ALTER TABLE calendario AUTO_INCREMENT = 1;
 ALTER TABLE usuario AUTO_INCREMENT = 1;
-*/
+
 
 -- =========================================
 -- CARGA DE DATOS: DIM_USUARIO
@@ -35,7 +35,11 @@ INSERT INTO usuario (edad, sexo, nivel, objetivo, tiene_gimnasio) VALUES
 (35, 'F', 'intermedio', 'mantenimiento', 0),
 (31, 'M', 'intermedio', 'perder_grasa', 1),
 (40, 'F', 'avanzado', 'ganar_musculo', 1),
-(26, 'Otro', 'avanzado', 'mantenimiento', 0);
+(26, 'Otro', 'avanzado', 'mantenimiento', 0),
+(24, 'F', 'principiante', 'mantenimiento', 0),
+(33, 'M', 'intermedio', 'ganar_musculo', 1),
+(38, 'F', 'intermedio', 'perder_grasa', 0),
+(45, 'M', 'avanzado', 'ganar_musculo', 1);
 
 SELECT * FROM usuario;
 
@@ -83,7 +87,12 @@ INSERT INTO calendario (fecha, dia, mes, anio, dia_semana) VALUES
 ('2026-01-07', 7, 1, 2026, 'Miércoles'),
 ('2026-01-08', 8, 1, 2026, 'Jueves'),
 ('2026-01-09', 9, 1, 2026, 'Viernes'),
-('2026-01-10', 10, 1, 2026, 'Sábado');
+('2026-01-10', 10, 1, 2026, 'Sábado'),
+('2026-01-11', 11, 1, 2026, 'Domingo'),
+('2026-01-12', 12, 1, 2026, 'Lunes'),
+('2026-01-13', 13, 1, 2026, 'Martes'),
+('2026-01-14', 14, 1, 2026, 'Miércoles'),
+('2026-01-15', 15, 1, 2026, 'Jueves');
 
 SELECT * FROM calendario;
 
@@ -152,6 +161,24 @@ VALUES
 -- Usuario 6 (avanzado, sin gimnasio)
 (6, 3, 1, 35, 8, 260, 1),
 (6, 1, 4, 45, 6, 250, 1),
-(6, 5, 6, 30, 4, 180, 1);
+(6, 5, 6, 30, 4, 180, 1),
+
+-- Usuario 7 (principiante)
+(7, 1, 11, 45, 6, 240, 1),
+(7, 5, 12, 30, 4, 190, 1),
+(7, 3, 13, 30, 7, 220, 0),
+
+-- Usuario 8 (intermedio con gimnasio)
+(8, 2, 11, 60, 8, 420, 1),
+(8, 2, 12, 65, 9, 450, 1),
+(8, 3, 13, 30, 7, 240, 1),
+
+-- Usuario 9 (intermedio sin gimnasio)
+(9, 3, 11, 35, 7, 230, 1),
+(9, 1, 12, 45, 6, 260, 1),
+
+-- Usuario 10 (avanzado con gimnasio)
+(10, 4, 11, 75, 9, 560, 1),
+(10, 4, 12, 80, 10, 600, 1);
 
 SELECT * FROM sesion_entrenamiento;
