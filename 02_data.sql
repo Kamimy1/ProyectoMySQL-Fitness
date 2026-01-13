@@ -9,7 +9,7 @@ Este bloque permite reiniciar la base de datos para pruebas y recargas de datos.
 Se utiliza DELETE en lugar de TRUNCATE para respetar las claves foráneas.
 */
 
-DELETE FROM sesion_entrenamiento;
+/*DELETE FROM sesion_entrenamiento;
 DELETE FROM rutina_ejercicio;
 DELETE FROM ejercicio;
 DELETE FROM rutina;
@@ -22,7 +22,7 @@ ALTER TABLE rutina_ejercicio AUTO_INCREMENT = 1; -- (si no tuviera PK compuesta)
 ALTER TABLE ejercicio AUTO_INCREMENT = 1;
 ALTER TABLE rutina AUTO_INCREMENT = 1;
 ALTER TABLE calendario AUTO_INCREMENT = 1;
-ALTER TABLE usuario AUTO_INCREMENT = 1;
+ALTER TABLE usuario AUTO_INCREMENT = 1;*/
 
 
 -- =========================================
